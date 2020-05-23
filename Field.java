@@ -1,14 +1,22 @@
 import java.util.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.geom.*;
 public class Field extends PlayArea
 {
-    private ArrayList<Prop> props;
     private BufferedImage playArea;
-    public Field(ArrayList<Prop> props, BufferedImage playArea)
+    //private AffineTransform t;
+    public Field(String fileName)
     {
-        super(props, playArea);
-        this.props = props;
-        this.playArea = playArea;
+        super(fileName);
+                try
+        {
+            playArea = ImageIO.read(new File(fileName));
+        }
+        catch (Exception e)
+        {
+        }
     }
 }
