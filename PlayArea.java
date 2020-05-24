@@ -9,24 +9,22 @@ public class PlayArea
 {
     private BufferedImage playArea;
     private AffineTransform t;
-    private ArrayList<String> quadrants;
-    public PlayArea(String fileName)
+    private BufferedImage[][] quadrants;
+    private Polygon rectangle;
+    public PlayArea(BufferedImage[][] quadrants)
     {
         t = new AffineTransform();
         t.translate(500, 10);
         t.scale(10, 10);
-        try
-        {
-            playArea = ImageIO.read(new File(fileName));
-        }
-        catch (Exception e)
-        {
-        }
+        this.quadrants = quadrants;
+        int[] xValues = {500, 500, 1000, 1000};
+        int[] yValues = {10, 510, 10, 510};
+        rectangle = new Polygon(xValues, yValues, 4);
     }
 
-    public void changePlayArea()
+    public void changeCenterQuadrant()
     {
-
+        
     }
 
     public void drawPlayArea(Graphics2D g2D, GamePanel panel1)
