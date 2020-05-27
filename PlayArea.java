@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.Graphics2D;
 import java.util.*;
+import java.awt.Polygon;
 public class PlayArea
 {
-    private BufferedImage playArea;
     private AffineTransform t;
-    private BufferedImage[][] quadrants;
+    private Quadrant[][] quadrants;
     private Polygon rectangle;
-    public PlayArea(BufferedImage[][] quadrants)
+    public PlayArea(Quadrant[][] quadrants)
     {
         t = new AffineTransform();
         t.translate(500, 10);
@@ -22,23 +22,39 @@ public class PlayArea
         rectangle = new Polygon(xValues, yValues, 4);
     }
 
-    public void changeCenterQuadrant()
-    {
-        
-    }
-
     public void drawPlayArea(Graphics2D g2D, GamePanel panel1)
     {
-        g2D.drawImage(playArea, t, panel1);
+        for (int i = 0; i < quadrants.length; i++)
+        {
+            for (int j = 0; j < quadrants[i].length; j++)
+            {
+                if (quadrants[i][j].getGenerate() == true)
+                {
+                    quadrants[i][j].drawQuadrant(g2D, panel1);
+                }
+            }
+        }
     }
-
-    public void movePlayAreaForward()
+    
+    public void changeQuadrants (Player player)
     {
-        t.translate(1, 1);
+        for (int i = 0; i < quadrants.length; i++)
+        {
+            for (int j = 0; j < quadrants[i].length; j++)
+            {
+                if (quadrants[i][j].getBounds().contains(player.getPlayerX(), player.getPlayerY()))
+                {
+                    
+                }
+                else
+                {
+                    quadrants[i][j].setGenerate(false);
+                }
+            }
+        }
     }
-
-    public void movePlayAreaBackWard()
-    {
-        t.translate(-1 , -1);
-    }
+    
+    
+    
+    
 }
