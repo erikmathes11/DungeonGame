@@ -44,7 +44,7 @@ public class PlayArea
             {
                 if (quadrants[i][j].getBounds().contains(player.getPlayerX(), player.getPlayerY()))
                 {
-                    
+                    quadrants[i][j].setGenerate(true);
                 }
                 else
                 {
