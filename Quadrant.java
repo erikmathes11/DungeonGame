@@ -10,13 +10,17 @@ public class Quadrant
     private AffineTransform t;
     private boolean generate;
     private Polygon bounds;
-    public Quadrant(BufferedImage quadrantImage, ArrayList<Prop> props, Polygon bounds)
+    private int[] x;
+    private int[] y;
+    public Quadrant(BufferedImage quadrantImage, ArrayList<Prop> props)
     {
         this.quadrantImage = quadrantImage;
         this.props = props;
-        this.bounds = bounds;
         t = new AffineTransform();
         generate = false;
+        x = new int[]{}; //still need to set up bounds of each quadrant
+        y = new int[]{};
+        bounds = new Polygon(x, y, 4);
     }
     
     public void drawQuadrant(Graphics2D g2D, GamePanel panel1)

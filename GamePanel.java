@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
 import java.io.*;
+import java.util.*;
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -10,6 +11,12 @@ public class GamePanel extends JPanel
     private BufferedImage ground3Picture;
     private BufferedImage ground4Picture;
     private Quadrant[][] quadrants;
+    private ArrayList<Prop> props;
+    private Quadrant ground1Quadrant;
+    private Quadrant ground2Quadrant;
+    private Quadrant ground3Quadrant;
+    private Quadrant ground4Quadrant;
+    private PlayArea town;
     public GamePanel ()
     {
         super();
@@ -22,9 +29,17 @@ public class GamePanel extends JPanel
         }
         catch(Exception e)
         {
-            
+
         }
-        //quadrants = {};
+        props = new ArrayList<Prop>();
+        ground1Quadrant = new Quadrant(ground1Picture, props);
+        ground2Quadrant = new Quadrant(ground2Picture, props);
+        ground3Quadrant = new Quadrant(ground3Picture, props);
+        ground4Quadrant = new Quadrant(ground4Picture, props);
+        //add props later
+        //quadrants = new Quadrant[3][3];
+        quadrants = new Quadrant[][]{{ground1Quadrant, ground1Quadrant, ground1Quadrant},{ground2Quadrant, ground2Quadrant, ground2Quadrant},{ground3Quadrant, ground3Quadrant, ground3Quadrant}};
+        town = new PlayArea(quadrants);
     }
 
     public void paintComponent (Graphics g)
@@ -37,7 +52,7 @@ public class GamePanel extends JPanel
         }
         catch (Exception e)
         {
-            
+
         }
     }
 
