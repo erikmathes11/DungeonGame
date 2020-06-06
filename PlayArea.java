@@ -36,23 +36,23 @@ public class PlayArea
         }
     }
     
-    public void changeQuadrants (Player player)
-    {
-        for (int i = 0; i < quadrants.length; i++)
-        {
-            for (int j = 0; j < quadrants[i].length; j++)
-            {
-                if (quadrants[i][j].getBounds().contains(player.getPlayerX(), player.getPlayerY()))
-                {
-                    quadrants[i][j].setGenerate(true);
-                }
-                else
-                {
-                    quadrants[i][j].setGenerate(false);
-                }
-            }
-        }
-    }
+    // public void changeQuadrants (Player player)
+    // {
+        // for (int i = 0; i < quadrants.length; i++)
+        // {
+            // for (int j = 0; j < quadrants[i].length; j++)
+            // {
+                // if (quadrants[i][j].getBounds().contains(player.getPlayerX(), player.getPlayerY()))
+                // {
+                    // quadrants[i][j].setGenerate(true);
+                // }
+                // else
+                // {
+                    // quadrants[i][j].setGenerate(false);
+                // }
+            // }
+        // }
+    // }
     
     
     

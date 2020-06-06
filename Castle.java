@@ -2,8 +2,8 @@ import java.util.*;
 import java.awt.image.BufferedImage;
 public class Castle extends PlayArea
 {
-    private BufferedImage[][] quadrants;
-    public Castle(BufferedImage[][] quadrants)
+    private Quadrant[][] quadrants;
+    public Castle(Quadrant[][] quadrants)
     {
         super(quadrants);
         this.quadrants = quadrants;
