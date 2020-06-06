@@ -9,24 +9,20 @@ public class Quadrant
     private ArrayList<Prop> props;
     private AffineTransform t;
     private boolean generate;
-    private Polygon bounds;
-    private int[] xArray;
-    private int[] yArray;
-    private int x;
-    private int y;
-    public Quadrant(BufferedImage quadrantImage, ArrayList<Prop> props,int x, int y)
+    private Rectangle2D.Double bounds;
+    private double x;
+    private double y;
+    public Quadrant(BufferedImage quadrantImage, ArrayList<Prop> props, double x, double y)
     {
         this.quadrantImage = quadrantImage;
         this.props = props;
         t = new AffineTransform();
         generate = false;
-        //xArray = new int[]{1, 1, 2, 2}; //still need to set up bounds of each quadrant
-        //yArray = new int[]{1, 1, 2, 2};
         this.x = x;
         this.y = y;
         t.translate(x, y);
         t.scale(5, 5);
-        //bounds = new Polygon(xArray, yArray, 4);
+        bounds = new Rectangle2D.Double(x, y, 500, 500);
     }
 
     public void drawQuadrant(Graphics2D g2D, GamePanel panel1)
@@ -43,11 +39,35 @@ public class Quadrant
     {
         generate = generate2;
     }
+    
+    public void moveForward ()
+    {
+        t.translate(1, 0);
+        bounds.setRect(t.getTranslateX(), t.getTranslateY(), 500, 500);
+    }
+    
+    public void moveBackward ()
+    {
+        t.translate(-1, 0); 
+        bounds.setRect(t.getTranslateX(), t.getTranslateY(), 500, 500);
+    }
+    
+    public void moveUp ()
+    {
+        t.translate(0, -1);
+        bounds.setRect(t.getTranslateX(), t.getTranslateY(), 500, 500);
+    }
+    
+    public void moveDown ()
+    {
+        t.translate(0, 1);
+        bounds.setRect(t.getTranslateX(), t.getTranslateY(), 500, 500);
+    }
 
-    // public Polygon getBounds ()
-    // {
-        // return bounds;
-    // }
+    public Rectangle2D.Double getBounds ()
+    {
+        return bounds;
+    }
 
     
 }

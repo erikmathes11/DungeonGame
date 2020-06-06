@@ -1,20 +1,27 @@
+import java.awt.image.BufferedImage;
 public class Player
 {
+    private double realX;
+    private double realY;
     private double x;
     private double y;
-    public Player(double x, double y)
+    private BufferedImage player;
+    public Player(BufferedImage player, double realX, double realY)
     {
-        this.x = x;
-        this.y = y;
+        this.player = player;
+        this.realX = realX;
+        this.realY = realY;
+        x = 0;
+        y = 0;
     }
     
-    public double getPlayerX()
+    public double getPlayerRealX()
     {
-        return x;
+        return realX;
     }
     
-    public double getPlayerY()
+    public double getPlayerRealY()
     {
-        return y;
+        return realY;
     }
 }

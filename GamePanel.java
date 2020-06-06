@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.*;
 import java.io.*;
 import java.util.*;
+import java.awt.event.*;
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -22,6 +23,7 @@ public class GamePanel extends JPanel
     private Quadrant ground8Quadrant;
     private Quadrant ground9Quadrant;
     private PlayArea town;
+    private Player player;
     public GamePanel ()
     {
         super();
@@ -50,22 +52,26 @@ public class GamePanel extends JPanel
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
         town = new PlayArea(quadrants);
+        player = new Player(ground4Picture, 50, 50); //change picture later
+        this.setFocusable(true);
+        this.addKeyListener(new Listener());
     }
 
     public void paintComponent (Graphics g)
     {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
-        //town.drawPlayArea(g2D, this); //won't do anything yet
-        ground1Quadrant.drawQuadrant(g2D, this);
-        ground2Quadrant.drawQuadrant(g2D, this);
-        ground3Quadrant.drawQuadrant(g2D, this);
-        ground4Quadrant.drawQuadrant(g2D, this);
-        ground5Quadrant.drawQuadrant(g2D, this);
-        ground6Quadrant.drawQuadrant(g2D, this);
-        ground7Quadrant.drawQuadrant(g2D, this);
-        ground8Quadrant.drawQuadrant(g2D, this);
-        ground9Quadrant.drawQuadrant(g2D, this);
+        town.drawPlayArea(g2D, this); //won't do anything yet
+        town.changeQuadrants(player);
+        // ground1Quadrant.drawQuadrant(g2D, this);
+        // ground2Quadrant.drawQuadrant(g2D, this);
+        // ground3Quadrant.drawQuadrant(g2D, this);
+        // ground4Quadrant.drawQuadrant(g2D, this);
+        // ground5Quadrant.drawQuadrant(g2D, this);
+        // ground6Quadrant.drawQuadrant(g2D, this);
+        // ground7Quadrant.drawQuadrant(g2D, this);
+        // ground8Quadrant.drawQuadrant(g2D, this);
+        // ground9Quadrant.drawQuadrant(g2D, this);
         try
         {
             Thread.sleep(40);
@@ -77,4 +83,33 @@ public class GamePanel extends JPanel
         this.repaint();
     }
 
+    public class Listener extends KeyAdapter
+    {
+        public void keyPressed (KeyEvent e)
+        {
+            System.out.println(e.getKeyCode());
+            if (e.getKeyCode() == 65) //a
+            {
+                town.movePlayAreaForward();
+            }
+            
+            if (e.getKeyCode() == 83) //s
+            {
+                town.movePlayAreaUp();
+            }
+            
+            if (e.getKeyCode() == 68) //d
+            {
+                town.movePlayAreaBackward();
+            }
+            
+            if (e.getKeyCode() == 87) //w
+            {
+                town.movePlayAreaDown();
+            }
+            
+            
+        }
+    }
+    
 }
