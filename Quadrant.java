@@ -25,9 +25,14 @@ public class Quadrant
         bounds = new Rectangle2D.Double(x, y, 500, 500);
     }
 
-    public void drawQuadrant(Graphics2D g2D, GamePanel panel1)
+    public void drawQuadrant (Graphics2D g2D, GamePanel panel1)
     {
         g2D.drawImage(quadrantImage, t, panel1);
+    }
+    
+    public void drawQuadrantHitBox (Graphics2D g2D)
+    {
+        g2D.draw(bounds);
     }
 
     public boolean getGenerate ()

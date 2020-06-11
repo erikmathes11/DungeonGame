@@ -78,18 +78,68 @@ public class PlayArea
 
     public void changeQuadrants (Player player)
     {
+        int rightQuadrantX = 0;
+        int rightQuadrantY = 0;
+        int belowQuadrantY = 0;
+        int belowQuadrantX = 0;
         for (int i = 0; i < quadrants.length; i++)
         {
             for (int j = 0; j < quadrants[i].length; j++)
             {
                 if (quadrants[i][j].getBounds().contains(player.getPlayerRealX(), player.getPlayerRealY()) == true)
                 {
-                    quadrants[i][j].setGenerate(true);
+                    try
+                    {
+                        quadrants[i][j].setGenerate(true);
+                        quadrants[i][j - 1].setGenerate(true);
+                        quadrants[i][j + 1].setGenerate(true);
+                        quadrants[i - 1][j].setGenerate(true);
+                        quadrants[i + 1][j].setGenerate(true);
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                    rightQuadrantX = i + 1;
+                    rightQuadrantY = j;
+                    belowQuadrantX = i;
+                    belowQuadrantY = j + 1;
                 }
                 else
                 {
-                    quadrants[i][j].setGenerate(false);
+                    if (i == rightQuadrantX && j == rightQuadrantY)
+                    {
+                        System.out.println("Right Quadrant Generate: " + quadrants[i][j].getGenerate());
+                        //Should be true
+                    }
+                    else if (i == belowQuadrantX && j == belowQuadrantY)
+                    {
+                        System.out.println("Below Quadrant Generate: " + quadrants[i][j].getGenerate());
+                        //Should be true
+                    }
+                    else
+                    {
+                        try
+                        {
+                            quadrants[i][j].setGenerate(false);
+                        }
+                        catch (Exception e)
+                        {
+                            
+                        }
+                    }
                 }
+            }
+        }
+    }
+
+    public void drawQuadrantHitBoxes (Graphics2D g2D)
+    {
+        for (int i = 0; i < quadrants.length; i++)
+        {
+            for (int j = 0; j < quadrants[i].length; j++)
+            {
+                quadrants[i][j].drawQuadrantHitBox(g2D);
             }
         }
     }

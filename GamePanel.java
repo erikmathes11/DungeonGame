@@ -24,7 +24,9 @@ public class GamePanel extends JPanel
     private Quadrant ground9Quadrant;
     private PlayArea town;
     private Player player;
-    public GamePanel ()
+    private JFrame frame1;
+    private boolean windowClose;
+    public GamePanel (JFrame frame1)
     {
         super();
         try
@@ -52,9 +54,12 @@ public class GamePanel extends JPanel
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
         town = new PlayArea(quadrants);
-        player = new Player(ground4Picture, 50, 50); //change picture later
+        player = new Player(ground4Picture, 500, 500); //change picture later
         this.setFocusable(true);
         this.addKeyListener(new Listener());
+        this.frame1 = frame1;
+        frame1.addWindowListener(new ListenerWindow());
+        windowClose = false;
     }
 
     public void paintComponent (Graphics g)
@@ -63,6 +68,8 @@ public class GamePanel extends JPanel
         Graphics2D g2D = (Graphics2D) g;
         town.drawPlayArea(g2D, this); //won't do anything yet
         town.changeQuadrants(player);
+        town.drawQuadrantHitBoxes(g2D); //for testing purposes
+        player.drawPlayer(g2D);
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
         // ground3Quadrant.drawQuadrant(g2D, this);
@@ -74,13 +81,23 @@ public class GamePanel extends JPanel
         // ground9Quadrant.drawQuadrant(g2D, this);
         try
         {
-            Thread.sleep(40);
+            Thread.sleep(10);
         }
         catch (Exception e)
         {
 
         }
         this.repaint();
+    }
+    
+    public boolean getWindowClose()
+    {
+        return windowClose;
+    }
+    
+    public int getCoinsGamePanel ()
+    {
+        return player.getCoins();
     }
 
     public class Listener extends KeyAdapter
@@ -109,6 +126,14 @@ public class GamePanel extends JPanel
             }
             
             
+        }
+    }
+    
+    public class ListenerWindow extends WindowAdapter
+    {
+        public void windowClosing(WindowEvent e)
+        {
+            windowClose = true;
         }
     }
     
