@@ -11,6 +11,8 @@ public class GamePanel extends JPanel
     private BufferedImage ground2Picture;
     private BufferedImage ground3Picture;
     private BufferedImage ground4Picture;
+    private BufferedImage coinPicture;
+    private BufferedImage coinPouchPicture;
     private Quadrant[][] quadrants;
     private ArrayList<Prop> props;
     private Quadrant ground1Quadrant;
@@ -35,6 +37,8 @@ public class GamePanel extends JPanel
             ground2Picture = ImageIO.read(new File("Ground2Picture.png"));
             ground3Picture = ImageIO.read(new File("Ground3Picture.png"));
             ground4Picture = ImageIO.read(new File("Ground4Picture.png"));
+            coinPicture = ImageIO.read(new File("CoinPicture.png"));
+            coinPouchPicture = ImageIO.read(new File("CoinPouchPicture.png"));
         }
         catch(Exception e)
         {
