@@ -109,12 +109,12 @@ public class PlayArea
                 {
                     if (i == rightQuadrantX && j == rightQuadrantY)
                     {
-                        System.out.println("Right Quadrant Generate: " + quadrants[i][j].getGenerate());
+                        //System.out.println("Right Quadrant Generate: " + quadrants[i][j].getGenerate());
                         //Should be true
                     }
                     else if (i == belowQuadrantX && j == belowQuadrantY)
                     {
-                        System.out.println("Below Quadrant Generate: " + quadrants[i][j].getGenerate());
+                        //System.out.println("Below Quadrant Generate: " + quadrants[i][j].getGenerate());
                         //Should be true
                     }
                     else
