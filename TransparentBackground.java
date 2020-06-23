@@ -7,9 +7,13 @@ public class TransparentBackground extends UIElement
     private BufferedImage transparentBackground;
     private double x;
     private double y;
-    private AffineTransform t;
-    public TransparentBackground()
+    private double scale;
+    public TransparentBackground(BufferedImage transparentBackground, double x, double y,double scale)
     {
-
+        super(transparentBackground, x, y, scale);
+        this.x = x;
+        this.y = y;
+        this.scale = scale;
     }
+    
 }

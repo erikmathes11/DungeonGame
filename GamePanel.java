@@ -13,6 +13,7 @@ public class GamePanel extends JPanel
     private BufferedImage ground4Picture;
     private BufferedImage coinPicture;
     private BufferedImage coinPouchPicture;
+    private BufferedImage inventoryBackground;
     private BufferedImage inventorySlotPicture;
     private UIElement[] inventoryElements;
     private Coin coinIcon;
@@ -69,6 +70,7 @@ public class GamePanel extends JPanel
     private JFrame frame1;
     private boolean windowClose;
     private boolean displayInventory;
+
     public GamePanel (JFrame frame1)
     {
         super();
