@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
 import java.io.*;
+import java.awt.event.*;
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -41,4 +42,38 @@ public class GamePanel extends JPanel
         }
     }
 
+    public class KeyListener extends KeyAdapter
+    {
+        public void keyPressed(KeyEvent e)
+        {
+            if(e.getKeyCode() == 40) //Down
+            {
+                
+            }
+            if(e.getKeyCode() == 38) //Up
+            {
+                
+            }
+            if(e.getKeyCode() == 39) //Right
+            {
+                
+            }
+            if(e.getKeyCode() == 37) //Left
+            {
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    }
+    
 }

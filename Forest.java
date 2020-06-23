@@ -2,8 +2,8 @@ import java.util.*;
 import java.awt.image.BufferedImage;
 public class Forest extends PlayArea
 {
-    private BufferedImage[][] quadrants;
-    public Forest(BufferedImage[][] quadrants)
+    private Quadrant[][] quadrants;
+    public Forest(Quadrant[][] quadrants)
     {
         super(quadrants);
         this.quadrants = quadrants;

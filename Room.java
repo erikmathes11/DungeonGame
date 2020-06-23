@@ -2,8 +2,8 @@ import java.util.*;
 import java.awt.image.BufferedImage;
 public class Room extends PlayArea
 {
-    private BufferedImage[][] quadrants;
-    public Room(BufferedImage[][] quadrants)
+    private Quadrant[][] quadrants;
+    public Room(Quadrant[][] quadrants)
     {
         super(quadrants);
         this.quadrants = quadrants;

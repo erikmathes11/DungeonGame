@@ -2,9 +2,9 @@ import java.util.*;
 import java.awt.image.BufferedImage;
 public class Field extends PlayArea
 {
-    private BufferedImage[][] quadrants;
+    private Quadrant[][] quadrants;
     //private AffineTransform t;
-    public Field(BufferedImage[][] quadrants)
+    public Field(Quadrant[][] quadrants)
     {
         super(quadrants);
         this.quadrants = quadrants;
