@@ -28,43 +28,43 @@ public class GamePanel extends JPanel
     private Quadrant ground7Quadrant;
     private Quadrant ground8Quadrant;
     private Quadrant ground9Quadrant;
-    private InventorySlot inventorySlot;
-    private InventorySlot inventorySlot1;
-    private InventorySlot inventorySlot2;
-    private InventorySlot inventorySlot3;
-    private InventorySlot inventorySlot4;
-    private InventorySlot inventorySlot5;
-    private InventorySlot inventorySlot6;
-    private InventorySlot inventorySlot7;
-    private InventorySlot inventorySlot8;
-    private InventorySlot inventorySlot9;
-    private InventorySlot inventorySlot10;
-    private InventorySlot inventorySlot11;
-    private InventorySlot inventorySlot12;
-    private InventorySlot inventorySlot13;
-    private InventorySlot inventorySlot14;
-    private InventorySlot inventorySlot15;
-    private InventorySlot inventorySlot16;
-    private InventorySlot inventorySlot17;
-    private InventorySlot inventorySlot18;
-    private InventorySlot inventorySlot19;
-    private InventorySlot inventorySlot20;
-    private InventorySlot inventorySlot21;
-    private InventorySlot inventorySlot22;
-    private InventorySlot inventorySlot23;
-    private InventorySlot inventorySlot24;
-    private InventorySlot inventorySlot25;
-    private InventorySlot inventorySlot26;
-    private InventorySlot inventorySlot27;
-    private InventorySlot inventorySlot28;
-    private InventorySlot inventorySlot29;
-    private InventorySlot inventorySlot30;
-    private InventorySlot inventorySlot31;
-    private InventorySlot inventorySlot32;
-    private InventorySlot inventorySlot33;
-    private InventorySlot inventorySlot34;
-    private TransparentBackground inventoryBackground;
-    
+    private UIElement inventorySlot;
+    private UIElement inventorySlot1;
+    private UIElement inventorySlot2;
+    private UIElement inventorySlot3;
+    private UIElement inventorySlot4;
+    private UIElement inventorySlot5;
+    private UIElement inventorySlot6;
+    private UIElement inventorySlot7;
+    private UIElement inventorySlot8;
+    private UIElement inventorySlot9;
+    private UIElement inventorySlot10;
+    private UIElement inventorySlot11;
+    private UIElement inventorySlot12;
+    private UIElement inventorySlot13;
+    private UIElement inventorySlot14;
+    private UIElement inventorySlot15;
+    private UIElement inventorySlot16;
+    private UIElement inventorySlot17;
+    private UIElement inventorySlot18;
+    private UIElement inventorySlot19;
+    private UIElement inventorySlot20;
+    private UIElement inventorySlot21;
+    private UIElement inventorySlot22;
+    private UIElement inventorySlot23;
+    private UIElement inventorySlot24;
+    private UIElement inventorySlot25;
+    private UIElement inventorySlot26;
+    private UIElement inventorySlot27;
+    private UIElement inventorySlot28;
+    private UIElement inventorySlot29;
+    private UIElement inventorySlot30;
+    private UIElement inventorySlot31;
+    private UIElement inventorySlot32;
+    private UIElement inventorySlot33;
+    private UIElement inventorySlot34;
+    private UIElement inventoryBackground;
+
     private UI inventory;
     private PlayArea town;
     private Player player;
@@ -127,8 +127,7 @@ public class GamePanel extends JPanel
         inventorySlot20 = new InventorySlot(inventorySlotPicture, 842, 250, 2);
         inventorySlot21 = new InventorySlot(inventorySlotPicture, 392, 325, 2);
         inventorySlot22 = new InventorySlot(inventorySlotPicture, 467, 325, 2);
-        
-        
+
         inventorySlot23 = new InventorySlot(inventorySlotPicture, 542, 325, 2);
         inventorySlot24 = new InventorySlot(inventorySlotPicture, 617, 325, 2);
         inventorySlot25 = new InventorySlot(inventorySlotPicture, 692, 325, 2);
@@ -142,7 +141,7 @@ public class GamePanel extends JPanel
         inventorySlot33 = new InventorySlot(inventorySlotPicture, 767, 400, 2);
         inventorySlot34 = new InventorySlot(inventorySlotPicture, 842, 400, 2);
         inventoryBackground = new TransparentBackground(inventoryBackgroundPicture, 0, 0, 5, .5f);
-        
+
         //where other inventory slots should go
         inventoryElements = new UIElement[]{inventoryBackground, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
         inventory = new UI(inventoryElements);
@@ -178,7 +177,7 @@ public class GamePanel extends JPanel
         if (displayInventory == true)
         {
             player.drawInventory(g2D, this);
-            
+
         }
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
@@ -264,26 +263,21 @@ public class GamePanel extends JPanel
         {
             if(e.getKeyCode() == 40) //Down
             {
-                
+
             }
             if(e.getKeyCode() == 38) //Up
             {
-                
+
             }
             if(e.getKeyCode() == 39) //Right
             {
-                
+
             }
             if(e.getKeyCode() == 37) //Left
             {
-                
+
             }
-            
-            
-            
-            
-            
-            
+
             
             
             
@@ -291,10 +285,10 @@ public class GamePanel extends JPanel
             
         }
     }
-    
+
     public class ListenerMouse extends MouseAdapter
     {
-        
+
     }
-    
+
 }

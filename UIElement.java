@@ -7,7 +7,7 @@ public class UIElement
     private BufferedImage uIElement;
     private double x;
     private double y;
-    private AffineTransform t;
+    protected AffineTransform t;
     private double scale;
     public UIElement(BufferedImage uIElement, double x, double y, double scale)
     {
