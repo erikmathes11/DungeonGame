@@ -13,7 +13,7 @@ public class GamePanel extends JPanel
     private BufferedImage ground4Picture;
     private BufferedImage coinPicture;
     private BufferedImage coinPouchPicture;
-    private BufferedImage inventoryBackground;
+    private BufferedImage inventoryBackgroundPicture;
     private BufferedImage inventorySlotPicture;
     private UIElement[] inventoryElements;
     private Coin coinIcon;
@@ -63,6 +63,7 @@ public class GamePanel extends JPanel
     private InventorySlot inventorySlot32;
     private InventorySlot inventorySlot33;
     private InventorySlot inventorySlot34;
+    private TransparentBackground inventoryBackground;
     
     private UI inventory;
     private PlayArea town;
@@ -70,7 +71,10 @@ public class GamePanel extends JPanel
     private JFrame frame1;
     private boolean windowClose;
     private boolean displayInventory;
-
+    private PointerInfo info;
+    private Point mousePoint;
+    private double mouseX;
+    private double mouseY;
     public GamePanel (JFrame frame1)
     {
         super();
@@ -83,6 +87,7 @@ public class GamePanel extends JPanel
             coinPicture = ImageIO.read(new File("CoinPicture.png"));
             coinPouchPicture = ImageIO.read(new File("CoinPouchPicture.png"));
             inventorySlotPicture = ImageIO.read(new File("InventorySlotPicture.png"));
+            inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
         }
         catch(Exception e)
         {
@@ -136,9 +141,10 @@ public class GamePanel extends JPanel
         inventorySlot32 = new InventorySlot(inventorySlotPicture, 692, 400, 2);
         inventorySlot33 = new InventorySlot(inventorySlotPicture, 767, 400, 2);
         inventorySlot34 = new InventorySlot(inventorySlotPicture, 842, 400, 2);
+        inventoryBackground = new TransparentBackground(inventoryBackgroundPicture, 0, 0, 5, .5f);
         
         //where other inventory slots should go
-        inventoryElements = new UIElement[]{inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
+        inventoryElements = new UIElement[]{inventoryBackground, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
         inventory = new UI(inventoryElements);
         displayInventory = false;
 
@@ -152,6 +158,7 @@ public class GamePanel extends JPanel
         this.frame1 = frame1;
         frame1.addWindowListener(new ListenerWindow());
         windowClose = false;
+        this.addMouseListener(new ListenerMouse());
     }
 
     public void paintComponent (Graphics g)
@@ -163,9 +170,15 @@ public class GamePanel extends JPanel
         town.drawQuadrantHitBoxes(g2D); //for testing purposes
         player.drawPlayer(g2D);
         coinIcon.drawCurrency(g2D, this);
+        info = MouseInfo.getPointerInfo();
+        mousePoint = info.getLocation();
+        mouseX = mousePoint.getX();
+        mouseY = mousePoint.getY();
+        //System.out.println(mouseX + ", " + mouseY);
         if (displayInventory == true)
         {
             player.drawInventory(g2D, this);
+            
         }
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
@@ -277,6 +290,11 @@ public class GamePanel extends JPanel
             
             
         }
+    }
+    
+    public class ListenerMouse extends MouseAdapter
+    {
+        
     }
     
 }

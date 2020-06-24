@@ -21,4 +21,18 @@ public class InventorySlot extends UIElement
         this.scale = scale;
     }
     
+    public double getInventorySlotX ()
+    {
+        return x;
+    }
+    
+    public double getInventorySlotY ()
+    {
+        return y;
+    }
+    
+    
+    
+    
+    
 }
