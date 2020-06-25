@@ -22,8 +22,16 @@ public class TransparentBackground extends UIElement
 
     public void drawUIElement (Graphics2D g2D, GamePanel panel1)
     {
-        g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+        //g2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
         g2D.drawImage(transparentBackground, t, panel1); //something wrong with the way transparentBackground image is passed to transparent background object
+        for (int i = 0; i < transparentBackground.getWidth(); i++)
+        {
+            for (int j = 0; j < transparentBackground.getHeight(); j++)
+            {
+                Color c = new Color(transparentBackground.getRGB(i, j));
+                c.setAlpha(.5f);
+            }
+        }
     }
 
 }
