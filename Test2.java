@@ -7,17 +7,22 @@ import java.util.*;
 public class Test2 extends JPanel
 {
     private BufferedImage image;
+    private ImageIcon image2;
+    private JLabel label1;
     public Test2()
     {
         super();
         try
         {
             image = ImageIO.read(new File("Ground1Picture.png"));
+            image2 = new ImageIcon("SelectorFrameSprite.gif");
         }
         catch(Exception e)
         {
             
         }
+        label1.setIcon(image2);
+        contentPane.add(label1, java.awt.BorderLayout.CENTER);
     }
     
     public void paintComponent(Graphics g)
