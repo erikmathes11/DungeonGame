@@ -15,7 +15,7 @@ public class GamePanel extends JPanel
     private BufferedImage coinPouchPicture;
     private BufferedImage inventoryBackgroundPicture;
     private BufferedImage inventorySlotPicture;
-    private ImageIcon selectorFrameSprite;
+    private Image selectorFrameSprite;
     private UIElement[] inventoryElements;
     private Coin coinIcon;
     private Quadrant[][] quadrants;
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel
             coinPouchPicture = ImageIO.read(new File("CoinPouchPicture.png"));
             inventorySlotPicture = ImageIO.read(new File("InventorySlotPicture.png"));
             inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
-            selectorFrameSprite = new ImageIcon("SelectorFrameSprite.gif");
+            selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
         }
         catch(Exception e)
         {
@@ -183,7 +183,7 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
 
         }
-        g.drawImage(selectorFrameSprite, 10, 10, this);
+        g.drawImage(selectorFrameSprite, 500, 500, this);
         
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
