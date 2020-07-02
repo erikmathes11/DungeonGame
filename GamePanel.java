@@ -5,6 +5,7 @@ import javax.imageio.*;
 import java.io.*;
 import java.util.*;
 import java.awt.event.*;
+import java.awt.image.WritableRaster;
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -15,7 +16,8 @@ public class GamePanel extends JPanel
     private BufferedImage coinPouchPicture;
     private BufferedImage inventoryBackgroundPicture;
     private BufferedImage inventorySlotPicture;
-    private Image selectorFrameSprite;
+    private BufferedImage inventoryPlayerSlotPicture;
+    private ImageIcon selectorFrameSprite; //should be image
     private UIElement[] inventoryElements;
     private Coin coinIcon;
     private Quadrant[][] quadrants;
@@ -66,6 +68,7 @@ public class GamePanel extends JPanel
     private UIElement inventorySlot34;
     private UIElement inventoryBackground;
     private UIElement selectorFrame;
+    private UIElement inventoryPlayerSlot;
 
     private UI inventory;
     private PlayArea town;
@@ -90,7 +93,10 @@ public class GamePanel extends JPanel
             coinPouchPicture = ImageIO.read(new File("CoinPouchPicture.png"));
             inventorySlotPicture = ImageIO.read(new File("InventorySlotPicture.png"));
             inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
-            selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
+            //selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
+            selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
+            //selectorFrameSprite = ImageIO.read(new File("selectorFrameSprite.gif"));
+            inventoryPlayerSlotPicture = ImageIO.read(new File("InventoryPlayerSlotPicture.png"));
         }
         catch(Exception e)
         {
@@ -144,10 +150,11 @@ public class GamePanel extends JPanel
         inventorySlot33 = new InventorySlot(inventorySlotPicture, 767, 400, 2);
         inventorySlot34 = new InventorySlot(inventorySlotPicture, 842, 400, 2);
         inventoryBackground = new TransparentBackground(inventoryBackgroundPicture, 0, 0, 5, .5f);
+        inventoryPlayerSlot = new InventoryPlayerSlot(inventoryPlayerSlotPicture, 167, 100, 2);
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
-        inventoryElements = new UIElement[]{inventoryBackground, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
+        inventoryElements = new UIElement[]{inventoryBackground, inventoryPlayerSlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
         inventory = new UI(inventoryElements);
         displayInventory = false;
 
@@ -183,7 +190,8 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
 
         }
-        g.drawImage(selectorFrameSprite, 500, 500, this);
+        selectorFrameSprite.paintIcon(this, g, 0 , 0);
+        //g.drawImage(selectorFrameSprite, 500, 500, this);
         
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
