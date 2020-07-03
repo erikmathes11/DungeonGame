@@ -21,6 +21,8 @@ public class GamePanel extends JPanel
     private BufferedImage pantsInventorySlotPicture;
     private BufferedImage helmetInventorySlotPicture;
     private BufferedImage shoesInventorySlotPicture;
+    private BufferedImage piecesInventorySlotPicture;
+    private BufferedImage mapPicture;
     private ImageIcon selectorFrameSprite; //should be image
     private UIElement[] inventoryElements;
     private Coin coinIcon;
@@ -77,8 +79,11 @@ public class GamePanel extends JPanel
     private UIElement pantsInventorySlot;
     private UIElement helmetInventorySlot;
     private UIElement shoesInventorySlot;
+    private UIElement piecesInventorySlot;
+    private UIElement map;
 
-    private UI inventory;
+    private UI inventoryUI;
+    private UI mapUI;
     private PlayArea town;
     private Player player;
     private JFrame frame1;
@@ -109,6 +114,8 @@ public class GamePanel extends JPanel
             pantsInventorySlotPicture = ImageIO.read(new File("PantsInventorySlotPicture.png"));
             helmetInventorySlotPicture = ImageIO.read(new File("HelmetInventorySlotPicture.png"));
             shoesInventorySlotPicture = ImageIO.read(new File("ShoesInventorySlotPicture.png"));
+            piecesInventorySlotPicture = ImageIO.read(new File("PiecesInventorySlotPicture.png"));
+            //mapPicture = ImageIO.read(new File(""));
         }
         catch(Exception e)
         {
@@ -116,15 +123,15 @@ public class GamePanel extends JPanel
         }
         props = new ArrayList<Prop>();
         coinIcon = new Coin(coinPicture, 0, 0);
-        ground1Quadrant = new Quadrant(ground1Picture, props, -100, -425); //each quadrant is 500, 500 and middle is 400, 75
-        ground2Quadrant = new Quadrant(ground2Picture, props, 400, -425);
-        ground3Quadrant = new Quadrant(ground3Picture, props, 900, -425);
-        ground4Quadrant = new Quadrant(ground4Picture, props, -100, 75);
-        ground5Quadrant = new Quadrant(ground1Picture, props, 400, 75);
-        ground6Quadrant = new Quadrant(ground2Picture, props, 900, 75);
-        ground7Quadrant = new Quadrant(ground3Picture, props, -100, 575);
-        ground8Quadrant = new Quadrant(ground4Picture, props, 400, 575);
-        ground9Quadrant = new Quadrant(ground1Picture, props, 900, 575);
+        ground1Quadrant = new Quadrant(ground1Picture, 5, 2, props, -100, -425, 0, 0); //each quadrant is 500, 500 and middle is 400, 75
+        ground2Quadrant = new Quadrant(ground2Picture, 5, 2, props, 400, -425, 0, 0);
+        ground3Quadrant = new Quadrant(ground3Picture, 5, 2, props, 900, -425, 0, 0);
+        ground4Quadrant = new Quadrant(ground4Picture, 5, 2, props, -100, 75, 0, 0);
+        ground5Quadrant = new Quadrant(ground1Picture, 5, 2, props, 400, 75, 0, 0);
+        ground6Quadrant = new Quadrant(ground2Picture, 5, 2, props, 900, 75, 0, 0);
+        ground7Quadrant = new Quadrant(ground3Picture, 5, 2, props, -100, 575, 0, 0);
+        ground8Quadrant = new Quadrant(ground4Picture, 5, 2, props, 400, 575, 0, 0);
+        ground9Quadrant = new Quadrant(ground1Picture, 5, 2, props, 900, 575, 0, 0);
         inventorySlot = new InventorySlot(inventorySlotPicture, 392, 100, 2);
         inventorySlot1 = new InventorySlot(inventorySlotPicture, 467, 100, 2);
         inventorySlot2 = new InventorySlot(inventorySlotPicture, 542, 100, 2);
@@ -167,18 +174,19 @@ public class GamePanel extends JPanel
         pantsInventorySlot = new InventoryArmorSlot(pantsInventorySlotPicture, 317, 250, 2);
         helmetInventorySlot = new InventoryArmorSlot(helmetInventorySlotPicture, 317, 100, 2);
         shoesInventorySlot = new InventoryArmorSlot(shoesInventorySlotPicture, 317, 325, 2);
+        piecesInventorySlot = new InventoryPiecesSlot(piecesInventorySlotPicture, 920, 220, 2);
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
-        inventoryElements = new UIElement[]{inventoryBackground, inventoryPlayerSlot, chestplateInventorySlot, pantsInventorySlot, helmetInventorySlot, shoesInventorySlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
-        inventory = new UI(inventoryElements);
+        inventoryElements = new UIElement[]{inventoryBackground, piecesInventorySlot, inventoryPlayerSlot, chestplateInventorySlot, pantsInventorySlot, helmetInventorySlot, shoesInventorySlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
+        inventoryUI = new UI(inventoryElements);
         displayInventory = false;
 
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
         town = new PlayArea(quadrants);
-        player = new Player(ground4Picture, inventory, 500, 500); //change picture later
+        player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
         this.setFocusable(true);
         this.addKeyListener(new Listener());
         this.frame1 = frame1;
@@ -307,6 +315,10 @@ public class GamePanel extends JPanel
             if(e.getKeyCode() == 37) //Left
             {
 
+            }
+            if(e.getKeyCode() == 77) //Map
+            {
+                
             }
 
             

@@ -7,27 +7,44 @@ public class Quadrant
 {
     private BufferedImage quadrantImage;
     private ArrayList<Prop> props;
+    private AffineTransform t2;
     private AffineTransform t;
     private boolean generate;
     private Rectangle2D.Double bounds;
     private double x;
     private double y;
-    public Quadrant(BufferedImage quadrantImage, ArrayList<Prop> props, double x, double y)
+    private double mapX;
+    private double mapY;
+    private double scale;
+    private double mapScale;
+    public Quadrant(BufferedImage quadrantImage, double scale, double mapScale, ArrayList<Prop> props, double x, double y, double mapX, double maxY)
     {
         this.quadrantImage = quadrantImage;
         this.props = props;
         t = new AffineTransform();
+        t2 = new AffineTransform();
         generate = false;
         this.x = x;
         this.y = y;
+        this.mapX = mapX;
+        this.mapY = mapY;
+        this.scale = scale;
+        this.mapScale = mapScale;
         t.translate(x, y);
-        t.scale(5, 5);
+        t.scale(scale, scale);
+        t2.translate(mapX, mapY);
+        t2.scale(mapScale, mapScale);
         bounds = new Rectangle2D.Double(x, y, 500, 500);
     }
 
     public void drawQuadrant (Graphics2D g2D, GamePanel panel1)
     {
         g2D.drawImage(quadrantImage, t, panel1);
+    }
+    
+    public void drawQuadrantOnMap (Graphics2D g2D, GamePanel panel1)
+    {
+        g2D.drawImage(quadrantImage, t2, panel1);
     }
     
     public void drawQuadrantHitBox (Graphics2D g2D)
