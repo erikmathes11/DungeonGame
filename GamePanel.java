@@ -17,6 +17,10 @@ public class GamePanel extends JPanel
     private BufferedImage inventoryBackgroundPicture;
     private BufferedImage inventorySlotPicture;
     private BufferedImage inventoryPlayerSlotPicture;
+    private BufferedImage chestplateInventorySlotPicture;
+    private BufferedImage pantsInventorySlotPicture;
+    private BufferedImage helmetInventorySlotPicture;
+    private BufferedImage shoesInventorySlotPicture;
     private ImageIcon selectorFrameSprite; //should be image
     private UIElement[] inventoryElements;
     private Coin coinIcon;
@@ -69,6 +73,10 @@ public class GamePanel extends JPanel
     private UIElement inventoryBackground;
     private UIElement selectorFrame;
     private UIElement inventoryPlayerSlot;
+    private UIElement chestplateInventorySlot;
+    private UIElement pantsInventorySlot;
+    private UIElement helmetInventorySlot;
+    private UIElement shoesInventorySlot;
 
     private UI inventory;
     private PlayArea town;
@@ -97,6 +105,10 @@ public class GamePanel extends JPanel
             selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
             //selectorFrameSprite = ImageIO.read(new File("selectorFrameSprite.gif"));
             inventoryPlayerSlotPicture = ImageIO.read(new File("InventoryPlayerSlotPicture.png"));
+            chestplateInventorySlotPicture = ImageIO.read(new File("ChestPlateInventorySlotPicture.png"));
+            pantsInventorySlotPicture = ImageIO.read(new File("PantsInventorySlotPicture.png"));
+            helmetInventorySlotPicture = ImageIO.read(new File("HelmetInventorySlotPicture.png"));
+            shoesInventorySlotPicture = ImageIO.read(new File("ShoesInventorySlotPicture.png"));
         }
         catch(Exception e)
         {
@@ -151,10 +163,14 @@ public class GamePanel extends JPanel
         inventorySlot34 = new InventorySlot(inventorySlotPicture, 842, 400, 2);
         inventoryBackground = new TransparentBackground(inventoryBackgroundPicture, 0, 0, 5, .5f);
         inventoryPlayerSlot = new InventoryPlayerSlot(inventoryPlayerSlotPicture, 167, 100, 2);
+        chestplateInventorySlot = new InventoryArmorSlot(chestplateInventorySlotPicture, 317 , 175 , 2); //317
+        pantsInventorySlot = new InventoryArmorSlot(pantsInventorySlotPicture, 317, 250, 2);
+        helmetInventorySlot = new InventoryArmorSlot(helmetInventorySlotPicture, 317, 100, 2);
+        shoesInventorySlot = new InventoryArmorSlot(shoesInventorySlotPicture, 317, 325, 2);
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
-        inventoryElements = new UIElement[]{inventoryBackground, inventoryPlayerSlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
+        inventoryElements = new UIElement[]{inventoryBackground, inventoryPlayerSlot, chestplateInventorySlot, pantsInventorySlot, helmetInventorySlot, shoesInventorySlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
         inventory = new UI(inventoryElements);
         displayInventory = false;
 
@@ -184,15 +200,16 @@ public class GamePanel extends JPanel
         mousePoint = info.getLocation();
         mouseX = mousePoint.getX();
         mouseY = mousePoint.getY();
+        
         //System.out.println(mouseX + ", " + mouseY);
         if (displayInventory == true)
         {
             player.drawInventory(g2D, this);
 
         }
-        selectorFrameSprite.paintIcon(this, g, 0 , 0);
+        selectorFrameSprite.paintIcon(this, g, 0 , 0); // test
         //g.drawImage(selectorFrameSprite, 500, 500, this);
-        
+
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
         // ground3Quadrant.drawQuadrant(g2D, this);
@@ -292,9 +309,6 @@ public class GamePanel extends JPanel
 
             }
 
-            
-            
-            
             
             
         }
