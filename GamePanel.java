@@ -1,3 +1,6 @@
+
+
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -23,7 +26,8 @@ public class GamePanel extends JPanel
     private BufferedImage shoesInventorySlotPicture;
     private BufferedImage piecesInventorySlotPicture;
     private BufferedImage mapPicture;
-    private ImageIcon selectorFrameSprite; //should be image
+    private ImageIcon selectorFrameSprite; //should be imageIcon
+    private ImageIcon mapSprite; //should be image
     private UIElement[] inventoryElements;
     private Coin coinIcon;
     private Quadrant[][] quadrants;
@@ -108,6 +112,7 @@ public class GamePanel extends JPanel
             inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
             //selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
             selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
+            mapSprite = new ImageIcon("MapSprite.gif");
             //selectorFrameSprite = ImageIO.read(new File("selectorFrameSprite.gif"));
             inventoryPlayerSlotPicture = ImageIO.read(new File("InventoryPlayerSlotPicture.png"));
             chestplateInventorySlotPicture = ImageIO.read(new File("ChestPlateInventorySlotPicture.png"));
@@ -216,6 +221,7 @@ public class GamePanel extends JPanel
 
         }
         selectorFrameSprite.paintIcon(this, g, 0 , 0); // test
+        mapSprite.paintIcon(this, g, 0, 0);
         //g.drawImage(selectorFrameSprite, 500, 500, this);
 
         // ground1Quadrant.drawQuadrant(g2D, this);
