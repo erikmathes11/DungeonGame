@@ -97,7 +97,6 @@ public class GamePanel extends JPanel
     private Point mousePoint;
     private double mouseX;
     private double mouseY;
-    private Robot robot;
     public GamePanel (JFrame frame1)
     {
         super();
@@ -122,7 +121,6 @@ public class GamePanel extends JPanel
             shoesInventorySlotPicture = ImageIO.read(new File("ShoesInventorySlotPicture.png"));
             piecesInventorySlotPicture = ImageIO.read(new File("PiecesInventorySlotPicture.png"));
             //mapPicture = ImageIO.read(new File(""));
-            robot = new Robot();
         }
         catch(Exception e)
         {
@@ -222,10 +220,7 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
         }
         selectorFrameSprite.paintIcon(this, g, 0 , 0); // test
-        mapSprite.paintIcon(this, g, 0, 0);
-        Color c = robot.getPixelColor(500, 500);
-        
-        System.out.println(c);
+        map.drawUIElement(g2D, this);
         //g.drawImage(selectorFrameSprite, 500, 500, this);
 
         // ground1Quadrant.drawQuadrant(g2D, this);
