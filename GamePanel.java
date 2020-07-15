@@ -220,7 +220,6 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
         }
         selectorFrameSprite.paintIcon(this, g, 0 , 0); // test
-        map.drawUIElement(g2D, this);
         //g.drawImage(selectorFrameSprite, 500, 500, this);
 
         // ground1Quadrant.drawQuadrant(g2D, this);
