@@ -15,6 +15,7 @@ public class MapSprite extends UISprite
     //private BufferedImage backgroundImage2;
     private Quadrant[][] quadrants;
     private AffineTransform t3;
+    private AffineTransform t4;
     public MapSprite (BufferedImage spriteImage, ImageIcon uISprite, Quadrant[][] quadrants, double x, double y, double scale)
     {
         super(spriteImage, uISprite, x, y, scale);
@@ -36,6 +37,8 @@ public class MapSprite extends UISprite
         t2.translate(Math.floor(x), Math.floor(y)); //for background image
         t3 = new AffineTransform(); //for map
         t3.translate(x, y);
+        t4 = new AffineTransform();
+        
 
         // t2.translate((int) Math.ceil(x), (int) Math.ceil(y));
         // try
@@ -53,10 +56,12 @@ public class MapSprite extends UISprite
 
     public void drawUIElement (Graphics2D g2D, GamePanel panel1)
     {
+        //g2D.drawImage(backgroundImage, t2, panel1);
         g2D.setTransform(t3); //g2D2 //passing t doesn't work
         uISprite.paintIcon(panel1, g2D, 0, 0); //g2D2
+        g2D.setTransform(t4);
         g2D.drawImage(backgroundImage, t2, panel1); //drawn in wrong spot
-        g2D.dispose(); //gets rid of coins label. doesn't stop from moving
+        //g2D.dispose(); //gets rid of coins label. doesn't stop from moving
         
         //System.out.println("hello");
 
@@ -81,4 +86,12 @@ public class MapSprite extends UISprite
         // System.out.println("xEndPoint: " + xEndPoint);
 
     }
+    
+    public static Rectangle2D.Double getSpriteBounds()
+    {
+        
+    }
+    
+    
+    
 }
