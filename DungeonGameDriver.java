@@ -19,7 +19,7 @@ public class DungeonGameDriver
         {
             coinLabel.setText("Coins: " + panel1.getCoinsGamePanel());
             coinLabel.setFont(new Font(coinLabel.getFont().getName(), coinLabel.getFont().getStyle(), 20));
-            coinLabel.setBounds(30,5, 100, 20);
+            coinLabel.setBounds(30, 5, 100, 20);
             try
             {
                 Thread.sleep(10);

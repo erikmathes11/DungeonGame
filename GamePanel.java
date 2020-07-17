@@ -1,6 +1,3 @@
-
-
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -9,6 +6,7 @@ import java.io.*;
 import java.util.*;
 import java.awt.event.*;
 import java.awt.image.WritableRaster;
+//import java.awt.geom.*; //for testing
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -27,7 +25,7 @@ public class GamePanel extends JPanel
     private BufferedImage piecesInventorySlotPicture;
     private BufferedImage mapPicture;
     private ImageIcon selectorFrameSprite; //should be imageIcon
-    private ImageIcon mapSprite; //should be image
+    private ImageIcon mapSpriteVideo; //should be ImageIcon
     private UIElement[] inventoryElements;
     private Coin coinIcon;
     private Quadrant[][] quadrants;
@@ -85,6 +83,7 @@ public class GamePanel extends JPanel
     private UIElement shoesInventorySlot;
     private UIElement piecesInventorySlot;
     private UIElement map;
+    private UIElement mapSprite;
 
     private UI inventoryUI;
     private UI mapUI;
@@ -97,6 +96,8 @@ public class GamePanel extends JPanel
     private Point mousePoint;
     private double mouseX;
     private double mouseY;
+    //private AffineTransform t; //for testing
+    
     public GamePanel (JFrame frame1)
     {
         super();
@@ -112,7 +113,7 @@ public class GamePanel extends JPanel
             inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
             //selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
             selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
-            mapSprite = new ImageIcon("MapSprite.gif");
+            mapSpriteVideo = new ImageIcon("MapSprite.gif");
             //selectorFrameSprite = ImageIO.read(new File("selectorFrameSprite.gif"));
             inventoryPlayerSlotPicture = ImageIO.read(new File("InventoryPlayerSlotPicture.png"));
             chestplateInventorySlotPicture = ImageIO.read(new File("ChestPlateInventorySlotPicture.png"));
@@ -180,6 +181,7 @@ public class GamePanel extends JPanel
         helmetInventorySlot = new InventoryArmorSlot(helmetInventorySlotPicture, 317, 100, 2);
         shoesInventorySlot = new InventoryArmorSlot(shoesInventorySlotPicture, 317, 325, 2);
         piecesInventorySlot = new InventoryPiecesSlot(piecesInventorySlotPicture, 920, 220, 2);
+        
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
@@ -190,6 +192,7 @@ public class GamePanel extends JPanel
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
+        mapSprite = new MapSprite(mapPicture, mapSpriteVideo, quadrants, 500, 500, 1);
         town = new PlayArea(quadrants);
         player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
         this.setFocusable(true);
@@ -198,6 +201,8 @@ public class GamePanel extends JPanel
         frame1.addWindowListener(new ListenerWindow());
         windowClose = false;
         this.addMouseListener(new ListenerMouse());
+        //t = new AffineTransform(); //for testing
+        //t.translate(1,1);
     }
 
     public void paintComponent (Graphics g)
@@ -219,7 +224,16 @@ public class GamePanel extends JPanel
         {
             player.drawInventory(g2D, this);
         }
-        selectorFrameSprite.paintIcon(this, g, 0 , 0); // test
+        
+        mapSprite.drawUIElement(g2D, this);
+        
+        //t.translate(1, 1);
+        //g2D.setTransform(t);
+        //selectorFrameSprite.paintIcon(this, g2D, 0 , 0); // test
+        //mapSpriteVideo.paintIcon(this, g2D, 0, 0);
+        //g2D.dispose();
+        
+        
         //g.drawImage(selectorFrameSprite, 500, 500, this);
 
         // ground1Quadrant.drawQuadrant(g2D, this);

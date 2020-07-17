@@ -9,6 +9,7 @@ public class UISprite extends UIElement
     private double x;
     private double y;
     private double scale;
+    protected AffineTransform t2;
     public UISprite (BufferedImage spriteImage, ImageIcon uISprite, double x, double y, double scale)
     {
         super(spriteImage, x, y, scale);
@@ -19,6 +20,7 @@ public class UISprite extends UIElement
         t.translate(x, y);
         this.scale = scale;
         t.scale(scale, scale);
+        t2 = new AffineTransform();
     }
 
     public void drawUIElement (Graphics2D g2D, GamePanel panel1)
