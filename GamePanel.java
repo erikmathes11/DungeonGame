@@ -97,7 +97,7 @@ public class GamePanel extends JPanel
     private double mouseX;
     private double mouseY;
     //private AffineTransform t; //for testing
-    
+
     public GamePanel (JFrame frame1)
     {
         super();
@@ -181,7 +181,7 @@ public class GamePanel extends JPanel
         helmetInventorySlot = new InventoryArmorSlot(helmetInventorySlotPicture, 317, 100, 2);
         shoesInventorySlot = new InventoryArmorSlot(shoesInventorySlotPicture, 317, 325, 2);
         piecesInventorySlot = new InventoryPiecesSlot(piecesInventorySlotPicture, 920, 220, 2);
-        
+
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
@@ -218,24 +218,23 @@ public class GamePanel extends JPanel
         mousePoint = info.getLocation();
         mouseX = mousePoint.getX();
         mouseY = mousePoint.getY();
-        
+
         //System.out.println(mouseX + ", " + mouseY);
         if (displayInventory == true)
         {
             player.drawInventory(g2D, this);
         }
-        
+
         mapSprite.drawUIElement(g2D, this);
-        
+        // Color c = new Color(ground1Picture.getRGB(0, 0));
+        // System.out.println(c);
         //t.translate(1, 1);
         //g2D.setTransform(t);
         //selectorFrameSprite.paintIcon(this, g2D, 0 , 0); // test
         //mapSpriteVideo.paintIcon(this, g2D, 0, 0);
         //g2D.dispose();
-        
-        
-        //g.drawImage(selectorFrameSprite, 500, 500, this);
 
+        //g.drawImage(selectorFrameSprite, 500, 500, this);
         // ground1Quadrant.drawQuadrant(g2D, this);
         // ground2Quadrant.drawQuadrant(g2D, this);
         // ground3Quadrant.drawQuadrant(g2D, this);
@@ -336,10 +335,9 @@ public class GamePanel extends JPanel
             }
             if(e.getKeyCode() == 77) //Map
             {
-                
+
             }
 
-            
             
         }
     }

@@ -58,9 +58,11 @@ public class MapSprite extends UISprite
     {
         //g2D.drawImage(backgroundImage, t2, panel1);
         g2D.setTransform(t3); //g2D2 //passing t doesn't work
+        g2D.drawImage(backgroundImage, t2, panel1);
         uISprite.paintIcon(panel1, g2D, 0, 0); //g2D2
         g2D.setTransform(t4);
-        g2D.drawImage(backgroundImage, t2, panel1); //drawn in wrong spot
+        getSpriteBounds();
+        //g2D.drawImage(backgroundImage, t2, panel1); //drawn in wrong spot
         //g2D.dispose(); //gets rid of coins label. doesn't stop from moving
         
         //System.out.println("hello");
@@ -87,12 +89,24 @@ public class MapSprite extends UISprite
 
     }
     
-    public Rectangle2D.Double getSpriteBounds(Graphics2D g2D)
+    public int getSpriteBounds()
     {
+        int lengthTraveled = 0;
+        BufferedImage uISpriteImage = new BufferedImage(uISprite.getImage().getWidth(null), uISprite.getImage().getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        //System.out.println(new Color(uISpriteImage.getRGB(0, 0)));
+        //System.out.println(uISpriteImage.getRGB(0, 0));
+        for (int i = 1; uISpriteImage.getRGB(i, 1) == 0; i++) //somewhat works, coord out of bounds
+        {
+            lengthTraveled = i;
+            System.out.println(i);
+        }
+        return lengthTraveled;
         
-        //uISprite.getImage().getGraphics();
         //g2D.setClip();
         
+        //get pixel data of imageicon directly
+        //convert each frame to bufferedimage
+        //
     }
     
     
