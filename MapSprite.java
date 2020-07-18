@@ -87,8 +87,11 @@ public class MapSprite extends UISprite
 
     }
     
-    public static Rectangle2D.Double getSpriteBounds()
+    public Rectangle2D.Double getSpriteBounds(Graphics2D g2D)
     {
+        
+        //uISprite.getImage().getGraphics();
+        //g2D.setClip();
         
     }
     
