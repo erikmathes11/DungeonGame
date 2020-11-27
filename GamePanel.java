@@ -24,8 +24,8 @@ public class GamePanel extends JPanel
     private BufferedImage shoesInventorySlotPicture;
     private BufferedImage piecesInventorySlotPicture;
     private BufferedImage mapPicture;
-    private ImageIcon selectorFrameSprite; //should be imageIcon
-    private ImageIcon mapSpriteVideo; //should be ImageIcon
+    //private ImageIcon selectorFrameSprite; //should be imageIcon
+    //private ImageIcon mapSpriteVideo; //should be ImageIcon
     private UIElement[] inventoryElements;
     private Coin coinIcon;
     private Quadrant[][] quadrants;
@@ -96,6 +96,7 @@ public class GamePanel extends JPanel
     private Point mousePoint;
     private double mouseX;
     private double mouseY;
+    private ArrayList<BufferedImage> mapFrames;
     //private AffineTransform t; //for testing
 
     public GamePanel (JFrame frame1)
@@ -112,8 +113,8 @@ public class GamePanel extends JPanel
             inventorySlotPicture = ImageIO.read(new File("InventorySlotPicture.png"));
             inventoryBackgroundPicture = ImageIO.read(new File("InventoryBackgroundPicture.png"));
             //selectorFrameSprite = frame1.getToolkit().createImage("SelectorFrameSprite.gif");
-            selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
-            mapSpriteVideo = new ImageIcon("MapSprite.gif");
+            //selectorFrameSprite = new ImageIcon("selectorFrameSprite.gif");
+            //mapSpriteVideo = new ImageIcon("MapSprite.gif");
             //selectorFrameSprite = ImageIO.read(new File("selectorFrameSprite.gif"));
             inventoryPlayerSlotPicture = ImageIO.read(new File("InventoryPlayerSlotPicture.png"));
             chestplateInventorySlotPicture = ImageIO.read(new File("ChestPlateInventorySlotPicture.png"));
@@ -122,6 +123,7 @@ public class GamePanel extends JPanel
             shoesInventorySlotPicture = ImageIO.read(new File("ShoesInventorySlotPicture.png"));
             piecesInventorySlotPicture = ImageIO.read(new File("PiecesInventorySlotPicture.png"));
             //mapPicture = ImageIO.read(new File(""));
+            
         }
         catch(Exception e)
         {
@@ -192,7 +194,7 @@ public class GamePanel extends JPanel
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
-        mapSprite = new MapSprite(mapPicture, mapSpriteVideo, quadrants, 500, 500, 3);
+        //mapSprite = new MapSprite(mapPicture, mapSpriteVideo, quadrants, 500, 500, 3);
         town = new PlayArea(quadrants);
         player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
         this.setFocusable(true);
@@ -225,7 +227,10 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
         }
 
-        mapSprite.drawUIElement(g2D, this);
+        //mapSprite.drawUIElement(g2D, this);
+        
+        
+        
         // Color c = new Color(ground1Picture.getRGB(0, 0));
         // System.out.println(c);
         //t.translate(1, 1);
