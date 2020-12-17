@@ -4,11 +4,13 @@ import java.awt.image.BufferedImage;
 import javax.imageio.*;
 import java.io.*;
 import java.util.*;
+import java.awt.geom.*;
 public class Test2 extends JPanel
 {
     private BufferedImage image;
     private ImageIcon image2;
     private JLabel label1;
+    private ArrayList<BufferImage> images = new ArrayList<BufferedImage>();
     public Test2()
     {
         super();
@@ -22,7 +24,6 @@ public class Test2 extends JPanel
             
         }
         label1.setIcon(image2);
-        contentPane.add(label1, java.awt.BorderLayout.CENTER);
     }
     
     public void paintComponent(Graphics g)

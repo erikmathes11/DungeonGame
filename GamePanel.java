@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 import java.awt.event.*;
 import java.awt.image.WritableRaster;
-//import java.awt.geom.*; //for testing
+import java.awt.geom.*; //for testing
 public class GamePanel extends JPanel
 {
     private BufferedImage ground1Picture;
@@ -83,7 +83,7 @@ public class GamePanel extends JPanel
     private UIElement shoesInventorySlot;
     private UIElement piecesInventorySlot;
     private UIElement map;
-    private UIElement mapSprite;
+    private MapSprite mapSprite;
 
     private UI inventoryUI;
     private UI mapUI;
@@ -97,6 +97,7 @@ public class GamePanel extends JPanel
     private double mouseX;
     private double mouseY;
     private ArrayList<BufferedImage> mapFrames;
+    private BufferedImage frame;
     //private AffineTransform t; //for testing
 
     public GamePanel (JFrame frame1)
@@ -122,8 +123,16 @@ public class GamePanel extends JPanel
             helmetInventorySlotPicture = ImageIO.read(new File("HelmetInventorySlotPicture.png"));
             shoesInventorySlotPicture = ImageIO.read(new File("ShoesInventorySlotPicture.png"));
             piecesInventorySlotPicture = ImageIO.read(new File("PiecesInventorySlotPicture.png"));
-            //mapPicture = ImageIO.read(new File(""));
-            
+            mapPicture = ImageIO.read(new File("pixil-frame-0.png"));
+            mapFrames = new ArrayList<BufferedImage>();
+            for(int i = 0; i < 53; i++)
+            {
+                //fileString = "pixil-frame-" + i + ".png";
+                //System.out.println(fileString);
+                frame = ImageIO.read(new File("pixil-frame-" + i + ".png"));
+                mapFrames.add(frame);
+                //System.out.println("index:" + i);
+            }
         }
         catch(Exception e)
         {
@@ -183,7 +192,8 @@ public class GamePanel extends JPanel
         helmetInventorySlot = new InventoryArmorSlot(helmetInventorySlotPicture, 317, 100, 2);
         shoesInventorySlot = new InventoryArmorSlot(shoesInventorySlotPicture, 317, 325, 2);
         piecesInventorySlot = new InventoryPiecesSlot(piecesInventorySlotPicture, 920, 220, 2);
-
+        
+        
         //selectorFrame = new UISprite(selectorFrameSprite, 0, 0, 2);
 
         //where other inventory slots should go
@@ -194,7 +204,7 @@ public class GamePanel extends JPanel
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
-        //mapSprite = new MapSprite(mapPicture, mapSpriteVideo, quadrants, 500, 500, 3);
+        mapSprite = new MapSprite(mapPicture, mapFrames, 200, 200, 3);
         town = new PlayArea(quadrants);
         player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
         this.setFocusable(true);
@@ -226,7 +236,15 @@ public class GamePanel extends JPanel
         {
             player.drawInventory(g2D, this);
         }
+        //g2D.drawImage(mapFrames.get(1), 10, 10, this);        works
+        mapSprite.drawUIElement(g2D, this);
+        
+        
+        // for(int i = 0; i < 52; i++) {
+            // g2D.drawImage(mapFrames.get(i), 200, 200, this);
+        //}
 
+        
         //mapSprite.drawUIElement(g2D, this);
         
         
