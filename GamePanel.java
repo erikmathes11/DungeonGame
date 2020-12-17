@@ -82,7 +82,7 @@ public class GamePanel extends JPanel
     private UIElement helmetInventorySlot;
     private UIElement shoesInventorySlot;
     private UIElement piecesInventorySlot;
-    private UIElement map;
+    
     private MapSprite mapSprite;
 
     private UI inventoryUI;
@@ -204,9 +204,11 @@ public class GamePanel extends JPanel
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
-        mapSprite = new MapSprite(mapPicture, mapFrames, 200, 200, 3);
         town = new PlayArea(quadrants);
         player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
+        mapSprite = new MapSprite(mapPicture, mapFrames, 200, 200, 3);
+        
+        
         this.setFocusable(true);
         this.addKeyListener(new Listener());
         this.frame1 = frame1;
@@ -215,6 +217,7 @@ public class GamePanel extends JPanel
         this.addMouseListener(new ListenerMouse());
         //t = new AffineTransform(); //for testing
         //t.translate(1,1);
+        mapSprite.changeSpriteMode(6);
     }
 
     public void paintComponent (Graphics g)

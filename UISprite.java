@@ -11,7 +11,9 @@ public class UISprite extends UIElement
     private double y;
     private double scale;
     protected Color transparent;
-    protected int frame;
+    protected int frame; //do these need to be protected?
+    protected int mode;
+    protected char direction;
     public UISprite (BufferedImage spriteImage, ArrayList<BufferedImage> frames, double x, double y, double scale)
     {
         super(spriteImage, x, y, scale);
@@ -24,10 +26,38 @@ public class UISprite extends UIElement
         t.scale(scale, scale);
         transparent = new Color(0, 0, 0, 0);
         frame = 0;
+        mode = 0;
+        direction = 'f';
+    }
+    
+    public void changeSpriteMode(int mode) {
+        this.mode = mode;
     }
 
     public void drawUIElement(Graphics2D g2D, GamePanel panel1)
     {
+        if(mode == 0) {
+            
+        }
+        else if(mode == 1) {
+            this.drawForward(g2D, panel1);
+        }
+        else if(mode == 2) {
+            this.drawBackward(g2D, panel1);
+        }
+        else if(mode == 3) {
+            this.drawForwardRepeat(g2D, panel1);
+        }
+        else if(mode == 4) {
+            this.drawBackwardRepeat(g2D, panel1);
+        }
+        else if(mode == 5) {
+            this.pause(g2D, panel1);
+        }
+        else if(mode == 6) {
+            this.drawAlternating(g2D, panel1);
+        }
+        
         // if(frame < frames.size()) {
             // System.out.println(frame);
             // g2D.drawImage(frames.get(frame), t, panel1);
@@ -36,12 +66,12 @@ public class UISprite extends UIElement
         // else {
             // frame = 0;
         // }
-        this.drawForward(g2D, panel1);
-        this.drawBackward(g2D, panel1); //must draw forward first in order to use
+        //this.drawForward(g2D, panel1);
+        //this.drawBackward(g2D, panel1); //must draw forward first in order to use
     }
     
-    public void puase(Graphics2D g2D, GamePanel panel1) {
-        
+    public void pause(Graphics2D g2D, GamePanel panel1) {
+        g2D.drawImage(frames.get(frame), t, panel1);
     }
     
     public void drawForward(Graphics2D g2D, GamePanel panel1) {
@@ -50,7 +80,8 @@ public class UISprite extends UIElement
             frame++;
         }
         else {
-            g2D.drawImage(frames.get(frame), t, panel1);
+            //System.out.println(frame);
+            g2D.drawImage(frames.get(frames.size() - 1), t, panel1);
         }
     }
     
@@ -60,7 +91,7 @@ public class UISprite extends UIElement
             g2D.drawImage(frames.get(frame), t, panel1);
         }
         else {
-            g2D.drawImage(frames.get(frame), t, panel1);
+            g2D.drawImage(frames.get(0), t, panel1);
         }
     }
 
@@ -80,7 +111,24 @@ public class UISprite extends UIElement
             g2D.drawImage(frames.get(frame), t, panel1);
         }
         else {
-            frame = frames.size();
+            frame = frames.size() - 1;
+        }
+    }
+    
+    public void drawAlternating(Graphics2D g2D, GamePanel panel1) {
+        if(direction == 'f' && frame == frames.size()) {
+            direction = 'b';
+            this.drawBackward(g2D, panel1);
+        }
+        else if(direction == 'f') {
+            this.drawForward(g2D, panel1);
+        }
+        else if(direction == 'b' && frame == 0) {
+            direction = 'f';
+            this.drawForward(g2D, panel1);
+        }
+        else if(direction == 'b') {
+            this.drawBackward(g2D, panel1);
         }
     }
     
