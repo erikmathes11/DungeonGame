@@ -12,10 +12,12 @@ public class Player
     private Ellipse2D.Double playerPlaceHolder;
     private int coins;
     private UI inventory;
-    public Player(BufferedImage player, UI inventory, double realX, double realY)
+    private UI map;
+    public Player(BufferedImage player, UI inventory, UI map, double realX, double realY)
     {
         this.player = player;
         this.inventory = inventory;
+        this.map = map;
         this.realX = realX;
         this.realY = realY;
         x = 0;
@@ -27,6 +29,10 @@ public class Player
     public void drawInventory(Graphics2D g2D, GamePanel panel1)
     {
         inventory.drawUI(g2D, panel1);
+    }
+    
+    public void drawMap(Graphics2D g2D, GamePanel panel1) {
+        map.drawUI(g2D, panel1);
     }
     
     public double getPlayerRealX()

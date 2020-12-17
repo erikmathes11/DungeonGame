@@ -83,7 +83,8 @@ public class GamePanel extends JPanel
     private UIElement shoesInventorySlot;
     private UIElement piecesInventorySlot;
     
-    private MapSprite mapSprite;
+    private UIElement[] mapElements;
+    private UIElement mapSprite;
 
     private UI inventoryUI;
     private UI mapUI;
@@ -92,6 +93,7 @@ public class GamePanel extends JPanel
     private JFrame frame1;
     private boolean windowClose;
     private boolean displayInventory;
+    private boolean displayMap;
     private PointerInfo info;
     private Point mousePoint;
     private double mouseX;
@@ -200,14 +202,19 @@ public class GamePanel extends JPanel
         inventoryElements = new UIElement[]{inventoryBackground, piecesInventorySlot, inventoryPlayerSlot, chestplateInventorySlot, pantsInventorySlot, helmetInventorySlot, shoesInventorySlot, inventorySlot, inventorySlot1, inventorySlot2, inventorySlot3, inventorySlot4, inventorySlot5, inventorySlot6, inventorySlot7, inventorySlot8, inventorySlot9, inventorySlot10, inventorySlot11, inventorySlot12, inventorySlot13, inventorySlot14, inventorySlot15, inventorySlot16, inventorySlot17, inventorySlot18, inventorySlot19, inventorySlot20, inventorySlot21, inventorySlot22, inventorySlot23, inventorySlot24, inventorySlot25, inventorySlot26, inventorySlot27, inventorySlot28, inventorySlot29, inventorySlot30, inventorySlot31, inventorySlot32, inventorySlot33, inventorySlot34};
         inventoryUI = new UI(inventoryElements);
         displayInventory = false;
+        displayMap = false;
+        
+        mapSprite = new MapSprite(mapPicture, mapFrames, 175, 75, 7);
+        //mapSprite.changeSpriteMode(1);
+        
+        mapElements = new UIElement[] {inventoryBackground, mapSprite};
+        mapUI = new UI(mapElements);
 
         //add props later
         //quadrants = new Quadrant[3][3];
         quadrants = new Quadrant[][]{{ground1Quadrant, ground2Quadrant, ground3Quadrant},{ground4Quadrant, ground5Quadrant, ground6Quadrant},{ground7Quadrant, ground8Quadrant, ground9Quadrant}};
         town = new PlayArea(quadrants);
-        player = new Player(ground4Picture, inventoryUI, 500, 500); //change picture later
-        mapSprite = new MapSprite(mapPicture, mapFrames, 200, 200, 3);
-        
+        player = new Player(ground4Picture, inventoryUI, mapUI, 500, 500); //change picture later
         
         this.setFocusable(true);
         this.addKeyListener(new Listener());
@@ -217,7 +224,6 @@ public class GamePanel extends JPanel
         this.addMouseListener(new ListenerMouse());
         //t = new AffineTransform(); //for testing
         //t.translate(1,1);
-        mapSprite.changeSpriteMode(6);
     }
 
     public void paintComponent (Graphics g)
@@ -240,7 +246,14 @@ public class GamePanel extends JPanel
             player.drawInventory(g2D, this);
         }
         //g2D.drawImage(mapFrames.get(1), 10, 10, this);        works
-        mapSprite.drawUIElement(g2D, this);
+        //mapSprite.drawUIElement(g2D, this);
+        
+        if(displayMap == true) {
+            player.drawMap(g2D, this);
+        }
+        else if(displayMap == false && mapSprite.getCurrentFrame() < mapFrames.size()) {
+            player.drawMap(g2D, this);
+        }
         
         
         // for(int i = 0; i < 52; i++) {
@@ -272,7 +285,7 @@ public class GamePanel extends JPanel
         // ground9Quadrant.drawQuadrant(g2D, this);
         try
         {
-            Thread.sleep(10);
+            Thread.sleep(1);
         }
         catch (Exception e)
         {
@@ -325,6 +338,19 @@ public class GamePanel extends JPanel
                 else
                 {
                     displayInventory = true;
+                }
+            }
+
+            if (e.getKeyCode() == 77) {
+                if (displayMap == true)
+                {
+                    mapSprite.changeSpriteMode(1);
+                    displayMap = false;
+                }
+                else
+                {
+                    mapSprite.changeSpriteMode(2);
+                    displayMap = true;
                 }
             }
 

@@ -30,5 +30,13 @@ public class UIElement
         return t;
     }
     
+    public void changeSpriteMode(int mode) {
+        
+    }
+    
+    public int getCurrentFrame() {
+        return 0;
+    }
+    
     
 }

@@ -25,13 +25,17 @@ public class UISprite extends UIElement
         this.scale = scale;
         t.scale(scale, scale);
         transparent = new Color(0, 0, 0, 0);
-        frame = 0;
+        frame = 52;
         mode = 0;
         direction = 'f';
     }
     
     public void changeSpriteMode(int mode) {
         this.mode = mode;
+    }
+    
+    public int getCurrentFrame() {
+        return frame;
     }
 
     public void drawUIElement(Graphics2D g2D, GamePanel panel1)
